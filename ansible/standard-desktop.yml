@@ -1,0 +1,43 @@
+# execute via : sudo ansible-playbook standard-desktop.yml
+- hosts: box,
+  # connection: local
+  become: true
+  tasks:
+  - name: Install deb packages from standard repositories
+    apt: 
+      name:
+        # AV software - removed for now - shouldn't be needed for a desktop.
+        #- clamav
+        #- clamtk
+        #
+        # Office apps
+        - libreoffice # Microsoft Office alternative
+        - okular # document viewer for pdf, djvu, etc
+        # Enable one or both of the following programs if the system has a scanner
+        #- skanlite # scanner software
+        #- xsane # alternative scanner software
+        - pdfarranger # split and merge
+        - firefox
+        # - thunderbird # using webmail for now
+        # - chromium-browser # using firefox only for now
+        - vlc # media player
+        - owncloud-client # Link to ida at work
+        # enable one of the following for a music player
+        # - elisa # music player 
+        #
+        # Virtualization Software
+        - virtualbox
+        - vagrant
+        - dosbox
+        #
+        # Remote access apps
+        - putty   # ssh, telnet, and tunnelling
+        - remmina # remote desktop client
+        - openssh-server # Allow remote command line access to this machine
+        # add a remote desktop server?
+        #
+        # Graphics Software
+        - inkscape
+        - gimp
+        - imagemagick
+        - imagej

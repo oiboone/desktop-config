@@ -1,0 +1,28 @@
+---
+ # playbook for testing syntax
+- hosts: all
+  become: true
+  gather_facts: no
+  vars_files:
+    - secret.yml
+  vars:
+    ansible_ssh_pass: "{{ssh_pass[inventory_hostname]}}"
+    ansible_sudo_pass: "{{sudo_pass[inventory_hostname]}}"
+  tasks:
+  - name: Prints test message
+    ansible.builtin.debug:
+      msg:
+      - "Provisioning host: {{inventory_hostname}}"
+      - "ssh pass is {{ansible_ssh_pass}}"
+      - "sudo pass is {{ansible_sudo_pass}}"
+
+  - name: test ssh connection
+    command: ls
+    register: myoutput
+
+  - name: Prints ls output
+    ansible.builtin.debug:
+      msg:
+      - "Phome contents: {{myoutput}}"
+
+
