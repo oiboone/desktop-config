@@ -1,13 +1,8 @@
 ---
  # playbook for testing syntax
-- hosts: all
+- hosts: active
   become: true
   gather_facts: no
-  vars_files:
-    - secret.yml
-  vars:
-    ansible_ssh_pass: "{{ssh_pass[inventory_hostname]}}"
-    ansible_sudo_pass: "{{sudo_pass[inventory_hostname]}}"
   tasks:
   - name: Prints test message
     ansible.builtin.debug:

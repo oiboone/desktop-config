@@ -1,17 +1,9 @@
 # execute via : sudo ansible-playbook engineering.yml
-- hosts: all
+- hosts: active
   gather_facts: no
-  vars_files:
-    - secret.yml
-  vars:
-    username: "{{ansible_user}}"
-    usergroup: "{{username}}"
-    dist_dir: "/home/{{username}}/distributions"
-    ansible_ssh_pass: "{{ssh_pass[inventory_hostname]}}"
-    ansible_sudo_pass: "{{sudo_pass[inventory_hostname]}}"
   become: true
 
 #- import_playbook: standard_desktop.yml
 #- import_playbook: multimedia.yml
-- import_playbook: engineering.yml
-#  import_playbook: technical_writing.yml
+#- import_playbook: engineering.yml
+#- import_playbook: technical_writing.yml

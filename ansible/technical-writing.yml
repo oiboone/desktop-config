@@ -1,16 +1,9 @@
 # execute via : ansible-playbook technical-writing.yml
 - hosts: all
   gather_facts: no
-  vars_files:
-  - secret.yml
-  vars:
-    username: "{{ansible_user}}"
-    usergroup: "{{username}}"
-    dist_dir: "/home/{{username}}/distributions"
-    ansible_ssh_pass: "{{ssh_pass[inventory_hostname]}}"
-    ansible_sudo_pass: "{{sudo_pass[inventory_hostname]}}"
   become: true
   tasks:
+  # - find a way to make this idempotent
   # - name: Install TeX Live
   #   include_tasks: tasks/latex_tasks.yml
 
@@ -24,20 +17,20 @@
         - graphviz  # text based directed and undirected graphs
         - texstudio
 
-  roles:
-    # Install vscode and extensions
-    - role: gantsign.visual-studio-code
-      users:
-        - username: "{{ansible_user}}"
-          visual_studio_code_extensions:
-            - shd101wyy.markdown-preview-enhanced
-            - notZaki.pandocciter
-            - DougFinke.vscode-pandoc
-          visual_studio_code_settings_overwrite: yes
-          visual_studio_code_settings: {
-            "editor.rulers": [80, 100, 120],
-            "editor.renderWhitespace": true,
-            "files.associations": {
-              "Vagrantfile": "ruby"
-            }
-          }
+  # roles:
+  #   # Install vscode and extensions
+  #   - role: gantsign.visual-studio-code
+  #     users:
+  #       - username: "{{ansible_user}}"
+  #         visual_studio_code_extensions:
+  #           - shd101wyy.markdown-preview-enhanced
+  #           - notZaki.pandocciter
+  #           - DougFinke.vscode-pandoc
+  #         visual_studio_code_settings_overwrite: yes
+  #         visual_studio_code_settings: {
+  #           "editor.rulers": [80, 100, 120],
+  #           "editor.renderWhitespace": true,
+  #           "files.associations": {
+  #             "Vagrantfile": "ruby"
+  #           }
+  #         }

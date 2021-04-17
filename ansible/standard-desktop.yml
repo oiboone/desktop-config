@@ -1,6 +1,5 @@
 # execute via : sudo ansible-playbook standard-desktop.yml
-- hosts: box,
-  # connection: local
+- hosts: active
   become: true
   tasks:
   - name: Install deb packages from standard repositories

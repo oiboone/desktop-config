@@ -1,23 +1,9 @@
 # execute via : sudo ansible-playbook engineering.yml
 - hosts: all
   gather_facts: no
-  vars_files:
-    - secret.yml
-  vars:
-    username: "{{ansible_user}}"
-    usergroup: "{{username}}"
-    dist_dir: "/home/{{username}}/distributions"
-    ansible_ssh_pass: "{{ssh_pass[inventory_hostname]}}"
-    ansible_sudo_pass: "{{sudo_pass[inventory_hostname]}}"
   become: true
 
   tasks:
-  - name: Prints test message
-    ansible.builtin.debug:
-      msg:
-      - "Provisioning host: {{inventory_hostname}}"
-      - "ssh pass is {{ansible_ssh_pass}}"
-      - "sudo pass is {{ansible_sudo_pass}}"
   - name: Install deb packages from standard repositories
     apt: 
       name:

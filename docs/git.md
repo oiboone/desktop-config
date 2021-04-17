@@ -1,6 +1,6 @@
 # Basic git usage
 
-# Creating a new repository in existing current directory
+## Creating a new repository in existing current directory
 
 git init *creates new .git repository in current directory*
 
@@ -15,10 +15,7 @@ git add -u            *stages new and modified files but not deleted ones*
 
 git commit -m **commit message**
 
-
-Creating a github repository for a new project
-Creating a github repository for a project oa;ready on local machine
-Restoring an old version of a file
+## Restoring an old version of a file
 
 git status *shows which branch is current and what staged and unstaged changes exist*
 
@@ -31,3 +28,17 @@ git checkout **commit-id** **filename** *restores an old version of a ile from t
 ## Cloning an existing Github repository into empty local directory 
 
 git clone **url**
+
+## Creating a GITHUB repository for a project already on a local machine
+
+On Github, create a new, empty repository with no initial files (e.g. no README or LICENSE files).
+
+git remote add origin **Github__Repository_URL** *Repo URL looks like github.com/oiboone/repo_name.git*
+
+git remote -v *tests connection to remote repository*
+
+git push origin main *note that this uses main rather than master as the primary branch*
+
+## pushing current local repository to github
+
+git push origin main *note that this uses main rather than master as the primary branch*

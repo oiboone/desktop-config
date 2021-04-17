@@ -1,13 +1,8 @@
 ---
- # ansible-playbook k3b.yml
-- hosts: all
+ # sudo ansible-playbook multimedia.yml
+- hosts: active
   become: true
   gather_facts: no
-  vars_files:
-    - secret.yml
-  vars:
-    ansible_ssh_pass: "{{ssh_pass[inventory_hostname]}}"
-    ansible_sudo_pass: "{{sudo_pass[inventory_hostname]}}"
   tasks:
   - name: Install apps from standard repositories
     apt: 
